@@ -1,10 +1,4 @@
-// npm: req.body.npm,
-// nama: req.body.nama,
-// email: req.body.email,
-// tlp: req.body.tlp,
-// jurusan: req.body.jurusan
-
-const Mahasiswa = require("../models/mahasiswa");
+const Mahasiswa = require("../../models/mahasiswa");
 
 const create = async (req) => {
     let { npm, nama, email, tlp, jurusan } = req.body

@@ -1,7 +1,7 @@
 // buat, semua, detail, ubah, hapus
 // nik, nama, email, tlp, matkul
 
-const Dosen = require("../models/dosen");
+const Dosen = require("../../models/dosen");
 
 const buat = async(req) => {
     let { nik, nama, email, tlp, matkul } = req.body

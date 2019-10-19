@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { buat, semua, detail, ubah, hapus } = require("../actions/dosens");
+const { buat, semua, detail, ubah, hapus } = require("../actions/Dosen/dosens");
 
 router.post("/", async (req, res) => {
     try {

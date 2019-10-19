@@ -1,6 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const { create, getAll, getDetail, update, destroy } = require("../actions/mahasiswas");
+const express   = require('express');
+const router    = express.Router();
+const { create, getAll, getDetail, update, destroy } = require("../actions/Mahasiswa/mahasiswas");
 
 router.post("/", async (req, res) => {
     try {   

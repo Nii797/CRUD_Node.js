@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose  = require("mongoose");
+const Schema    = mongoose.Schema;
 
 let dosenSchema = new Schema({
-    nik: Number,
-    nama: String,
-    email: String,
-    tlp: Number,
+    nik:    Number,
+    nama:   String,
+    email:  String,
+    tlp:    Number,
     matkul: String
 });
 
