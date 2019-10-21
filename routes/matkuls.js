@@ -1,7 +1,7 @@
 const express  = require('express')
 const router   = express.Router();
 const { buat, semua, detail, ubah, hapus } = require("../actions/Matkul/matkuls")  
-const List     = require("../actions/Dosen/list-dosen.action")
+
 
 router.post("/", async (req, res) => {
     try {

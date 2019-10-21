@@ -1,7 +1,48 @@
 const express = require('express');
 const router  = express.Router();
-const { buat, semua, detail, ubah, hapus } = require("../actions/Dosen/dosens");
-const List    = require("../actions/Dosen/list-dosen.action")   
+const { buat, semua, detail, ubah, hapus } = require("../actions/Dosen/dosens");   
+const searchDosen = require("../actions/Dosen/search.action") 
+
+router.get("/search", async (req, res, next) => {
+    let { nik, nama, email, tlp, matkul } = req.query
+    console.log(nik)
+    try {
+        let params = {}
+
+        if (nik) {
+            params.nik = nik
+        }
+
+        if (nama) {
+            params.nama = nama
+        }
+
+        if (email) {
+            params.email = email
+        }
+
+        if (tlp) {
+            params.tlp = tlp
+        }
+
+        if (matkul) {
+            params.matkul = matkul
+        }
+
+        let data = await new searchDosen(params).all()
+        console.log(params)
+        return res.status(200).json({
+            status: "Sukses",
+            data,
+            message: "Pencarian Sukses"
+        })
+    } catch(err) {
+        return res.status(400).json({
+            status: "Pencarian Error",
+            message: err.message
+        })
+    }
+});
 
 router.post("/", async (req, res) => {
     try {
