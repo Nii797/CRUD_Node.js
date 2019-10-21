@@ -1,12 +1,12 @@
 const express = require('express');
 const router  = express.Router();
 const { buat, semua, detail, ubah, hapus } = require("../actions/Dosen/dosens");   
-const searchDosen = require("../actions/Dosen/search.action") 
+const SearchDosen = require("../actions/Dosen/search.action") 
 
-router.get("/search", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
     let { nik, nama, email, tlp, matkul } = req.query
-    console.log(nik)
-    try {
+        console.log(nama)
+        try {
         let params = {}
 
         if (nik) {
@@ -29,7 +29,7 @@ router.get("/search", async (req, res, next) => {
             params.matkul = matkul
         }
 
-        let data = await new searchDosen(params).all()
+        let data = await new SearchDosen(params).all()
         console.log(params)
         return res.status(200).json({
             status: "Sukses",
