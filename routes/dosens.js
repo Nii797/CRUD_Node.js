@@ -1,6 +1,7 @@
 const express = require('express');
-const router = express.Router();
+const router  = express.Router();
 const { buat, semua, detail, ubah, hapus } = require("../actions/Dosen/dosens");
+const List    = require("../actions/Dosen/list-dosen.action")   
 
 router.post("/", async (req, res) => {
     try {
@@ -34,6 +35,48 @@ router.get("/", async (req, res) => {
             message: err.message
         })
     }    
+});
+
+router.get("/", async (req, res, next) => {
+    try { 
+        let params = {}
+        let search = {}
+
+        let limit = parseInt(req.query.limit)
+        if(!limit) {
+            params.limit = 30
+        } else {
+            params.limit = limit
+        }
+
+        let page = parseInt(req.query.page)
+        if(!page){
+            params.page = 1
+        } else {
+            params.page = page
+        }
+
+        let data = await new List(search, params).exec()
+        let meta = {
+            total: data.total,
+            limit: data.limit,
+            page: data.page,
+            pages: data.pages
+        }
+        data = data.data
+
+        return res.status(200).json({
+            status: "Sukses",
+            message: "Semua data",
+            data,
+            meta
+        })
+    } catch(err) {
+        return res.status(400).json({
+            status: "Error",
+            message: err.message
+        })
+    }
 });
 
 router.get("/:id", async (req, res) => {

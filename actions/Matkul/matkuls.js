@@ -13,11 +13,11 @@ const buat = async(req) => {
     let { nomatkul, namamatkul, dosen, semester } = req.body
     nomatkul = parseInt(nomatkul)
 
-    let masukann_data = {
+    let masukan_data = {
         nomatkul, namamatkul, dosen, semester
     }
 
-    let data = new Matkul(masukann_data)
+    let data = new Matkul(masukan_data)
 
     try {
         await data.save()
@@ -46,7 +46,52 @@ const semua = async () => {
     }    
 }
 
+const detail = async (id) => {
+    try {
+        let query = await Matkul.findOne({
+            _id: id
+        }).exec()
+
+        return query
+    } catch(err) {
+        throw err
+    }
+}
+
+const ubah = async (id, updated_data) => {
+    let { nomatkul, namamatkul, dosen, semester } = updated_data
+
+    let data = {
+        nomatkul, namamatkul, dosen, semester
+    }
+
+    try {
+        let query = await Matkul.findOneAndUpdate({
+            _id: id
+        }, data).exec()
+
+        return query
+    } catch(err) {
+        throw err
+    }
+}
+
+const hapus = async (id) => {
+    try {
+        let query = await Matkul.findOneAndDelete({
+            _id: id
+        }).exec()
+
+        return query
+    } catch(err){
+        throw err
+    }
+}
+
 module.exports = {
     buat,
-    semua
+    semua,
+    detail,
+    ubah,
+    hapus
 }

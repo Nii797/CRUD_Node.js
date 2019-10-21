@@ -1,5 +1,6 @@
-const mongoose  = require("mongoose");
-const Schema    = mongoose.Schema;
+const mongoose          = require("mongoose");
+const Schema            = mongoose.Schema;
+const mongoosePaginate  = require("mongoose-paginate")
 
 let dosenSchema = new Schema({
     nik:    Number,
@@ -8,6 +9,13 @@ let dosenSchema = new Schema({
     tlp:    Number,
     matkul: String
 });
+
+dosenSchema.plugin(mongoosePaginate)
+dosenSchema.virtual('user', {
+    localField: 'author',
+    foreignField: '_id',
+    justOnce: false
+})
 
 let Dosen = mongoose.model("Dosen", dosenSchema);
 
