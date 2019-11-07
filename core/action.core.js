@@ -15,9 +15,10 @@ class Action {
 
     async create(data){
         try{
-            let result = new this.model(data)
+            console.log(data)
+            let result = await this.model(data)
             await result.save()
-
+            
             return result
         } catch(err){
             throw err
@@ -33,7 +34,6 @@ class Action {
             throw err
         } 
     }
-
 
     async getDetail(data){
         try{
@@ -69,6 +69,18 @@ class Action {
             throw err
         }
     }
+
+    // async update(id, data){
+    //     try{
+    //         let query = await this.model.findAndModify({
+    //             _id: id
+    //             }, data, { new: true}).exec()
+
+    //         return query    
+    //     } catch(err){
+    //         throw err
+    //     }
+    // }
 
     async delete(id){
         try{

@@ -1,11 +1,10 @@
 const express   = require('express')
 const router    = express.Router()
-const Register  = require("../actions/users/register.action")
-const Login     = require("../actions/users/login.action")
+const Register  = require("../actions/Dosen/7.register.action")
+const Login     = require("../actions/Dosen/8.login.action")
 
-// ================================ Register akun User =================================
-router.post("/register", async (req, res) => {
-    try {
+router.post("/register-dosen", async (req, res, next) => {
+    try{
         let data = await new Register(req).exec()
 
         return res.send({
@@ -20,10 +19,7 @@ router.post("/register", async (req, res) => {
         })
     }
 })
-// =====================================================================================
 
-
-// ================================ Login akun User ====================================
 router.post("/login", async (req, res) => {
     try{
         let data = await new Login(req).exec()
@@ -40,6 +36,5 @@ router.post("/login", async (req, res) => {
         })
     }
 })
-// ======================================================================================
 
 module.exports = router

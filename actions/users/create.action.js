@@ -1,6 +1,6 @@
 const User      = require("../../models/user")
-// const API    = require("../../core/action.core")
-const API       = require("../../core/aksi.core.dosen") 
+const API    = require("../../core/action.core")
+// const API       = require("../../core/aksi.core.dosen") 
 const bcrypt    = require("bcryptjs")
 const { validationResult }  = require("express-validator")
 
