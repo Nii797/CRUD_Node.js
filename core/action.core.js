@@ -3,6 +3,47 @@ class Action {
         this.model = model  
     }
 
+    async list_populate(q, population){
+        try{
+            let params = {}
+            let populate_params = []
+
+            if(population){
+                populate_params = population
+            }
+
+            if(q){
+                params = q
+            }
+
+            let data = await this.model.find(params).populate(populate_params).lean().exec()
+
+            return data 
+        } catch(err){
+            throw err
+        }
+    }
+
+    async list_paginate(params, params2){
+        try{
+            let data = await this.model.paginate(params2, 
+                params
+            ).then(res => {
+                return {
+                    data: res.docs,
+                    total: res.total,
+                    limit: res.limit,
+                    page: res.page,
+                    pages: res.pages
+                }
+            })
+
+            return data
+        } catch(err){
+            throw err
+        }
+    }
+
     async list(){
         try {
             let data = await this.model.find({}).exec()

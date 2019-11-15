@@ -8,7 +8,7 @@ class Login {
         this.password   = req.body.password
     }
 
-    async exec(){
+    async exec(){       
         try{
             let data = await User.find({
                 email: this.email,

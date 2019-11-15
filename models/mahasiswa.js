@@ -1,5 +1,6 @@
-const mongoose  = require("mongoose")
-const Schema    = mongoose.Schema
+const mongoose          = require("mongoose")
+const Schema            = mongoose.Schema
+const mongoosePaginate  = require("mongoose-paginate")
 
 let mhsSchema = new Schema ({
     nomor_induk : Number,
@@ -23,6 +24,7 @@ let mhsSchema = new Schema ({
     }
 })
 
+mhsSchema.plugin(mongoosePaginate)
 let Mahasiswa = mongoose.model("Mahasiswa", mhsSchema)
 
 module.exports = Mahasiswa
