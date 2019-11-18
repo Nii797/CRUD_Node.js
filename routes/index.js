@@ -5,7 +5,8 @@ const mongoose = require("mongoose")
 
 router.get('/', (req, res) => {
     db_status = mongoose.connection.readyState
-    db_status_name = [ "disconnected", "connected", "connecting", "disconnecting" ]
+    db_status_name = [ "disconnected", "connected", "connecting",
+                        "disconnecting" ]
 
     return res.send({
         name: "Create Read Update Delete",
