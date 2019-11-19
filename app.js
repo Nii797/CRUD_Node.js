@@ -1,12 +1,15 @@
-const express = require('express');
-const app = express();  
-require("./db"); // database connection
+const express      = require('express')
+const app          = express()
+require("./servers/db")
+ 
+const index_routes   = require("./routes/index") 
+const books          = require("./routes/buku.routes")  
 
-// for parsing aplication/x-form-urlencoded
 app.use(express.urlencoded({ extended : true }))
 
-require('./routes/main')(app) // all routes imported
+app.use("/index", index_routes)
+app.use("/buku", books)
 
 app.listen(3300, () => {
-    console.log('Example app listening on port 3300')
-});
+    console.log(`Example port to 3300`)
+})
