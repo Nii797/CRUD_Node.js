@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();  
-require("./db"); // database connection
+require("./db"); // koneksi database
 
 // for parsing aplication/x-form-urlencoded
 app.use(express.urlencoded({ extended : true }))

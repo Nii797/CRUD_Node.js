@@ -6,7 +6,7 @@ const matkuls     = require("./matkuls")
 const routes = (app) => {
     app.use("/", index)
     app.use("/dosen", dosens)
-    app.use("/mahasiswa", mahasiswas)
+    app.use ("/mahasiswa", mahasiswas)
     app.use("/matkul", matkuls)
 }
 
